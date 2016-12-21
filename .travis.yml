@@ -1,0 +1,17 @@
+language: php
+
+php:
+    - 7.0
+    - 7.1
+    - nightly
+    
+install:
+    - cd Famoser.SyncApi.Webpage
+    - composer install --dev
+
+after_script:
+  - ./vendor/bin/test-reporter
+  - wget https://scrutinizer-ci.com/ocular.phar
+  - php ocular.phar code-coverage:upload --format=php-clover ./build/logs/clover.xml
+  - ./vendor/bin/codacycoverage clover ./build/logs/clover.xml
+ 
