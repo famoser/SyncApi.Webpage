@@ -9,6 +9,9 @@ src/public/assets/vendor
 #excluding SLIM framework files
 app/cache/*
 app/logs/*
+!app/cache/.gitkeep
+!app/logs/.gitkeep
+
 
 #excluding runtime data
 app/data.sqlite
