@@ -14,3 +14,4 @@ src/public/dist/fonts/pre/*
 mail-*-*-*.txt
 deployer.phar
 servers.yml
+build/logs/clover.xml
