@@ -1,12 +1,11 @@
 # SyncApi
 This is the Webpage version for the http://igthub.com/famoser/SyncApi
 
-C#: [![Build status](https://ci.appveyor.com/api/projects/status/un5aq493586670k3?svg=true)](https://ci.appveyor.com/project/famoser/syncapi)
-php: [![Travis Build Status](https://travis-ci.org/famoser/SyncApi.svg?branch=master)](https://travis-ci.org/famoser/SyncApi)
-[![Code Climate](https://codeclimate.com/github/famoser/SyncApi/badges/gpa.svg)](https://codeclimate.com/github/famoser/SyncApi)
-[![Codacy](https://api.codacy.com/project/badge/Grade/9ba78fbd408b40aabfa3ee220a2f5ea0)](https://www.codacy.com/app/products/SyncApi?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=famoser/SyncApi&amp;utm_campaign=Badge_Grade)
-[![Scrutinizer](https://scrutinizer-ci.com/g/famoser/SyncApi/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/famoser/SyncApi)
-[![Test Coverage](https://codeclimate.com/github/famoser/SyncApi/badges/coverage.svg)](https://codeclimate.com/github/famoser/SyncApi/coverage)
+[![Travis Build Status](https://travis-ci.org/famoser/SyncApi.Webpage.svg?branch=master)](https://travis-ci.org/famoser/SyncApi.Webpage)
+[![Code Climate](https://codeclimate.com/github/famoser/SyncApi.Webpage/badges/gpa.svg)](https://codeclimate.com/github/famoser/SyncApi.Webpage)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/0049282fe1b3437ba8321ec244a3ea93)](https://www.codacy.com/app/famoser/SyncApi-Webpage?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=famoser/SyncApi.Webpage&amp;utm_campaign=Badge_Grade)
+[![Scrutinizer](https://scrutinizer-ci.com/g/famoser/SyncApi.Webpage/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/famoser/SyncApi.Webpage)
+[![Test Coverage](https://codeclimate.com/github/famoser/SyncApi.Webpage/badges/coverage.svg)](https://codeclimate.com/github/famoser/SyncApi.Webpage/coverage)
 
 a nuget portable library to sync entities in a very convenient way.
 
