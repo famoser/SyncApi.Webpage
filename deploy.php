@@ -6,7 +6,7 @@ require 'vendor/deployer/deployer/recipe/common.php';
 set('repository', 'https://github.com/famoser/SyncApi.Webpage.git');
 set('shared_files', ["app/data.sqlite"]);
 set('shared_dirs', ["app/logs"]);
-set('writable_dirs', ['app/logs', 'app/cache']);
+set('writable_dirs', ['app/logs', 'app/cache', 'app']);
 set('clear_paths', ["app/cache"]);
 set('http_user', 'floria74');
 
