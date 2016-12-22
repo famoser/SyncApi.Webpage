@@ -1,5 +1,5 @@
 # SyncApi
-This is the Webpage version for the http://igthub.com/famoser/SyncApi
+This is the Webpage version for the http://github.com/famoser/SyncApi
 
 [![Travis Build Status](https://travis-ci.org/famoser/SyncApi.Webpage.svg?branch=master)](https://travis-ci.org/famoser/SyncApi.Webpage)
 [![Code Climate](https://codeclimate.com/github/famoser/SyncApi.Webpage/badges/gpa.svg)](https://codeclimate.com/github/famoser/SyncApi.Webpage)
