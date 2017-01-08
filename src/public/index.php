@@ -16,20 +16,20 @@ $basePath = realpath(__DIR__ . "/" . $oneUp . $oneUp) . $ds;
 
 $debugModel = !file_exists(".prod");
 
-require '../../vendor/autoload.php';
+require '..' . $ds . '..' . $ds . 'vendor' . $ds . 'autoload.php';
 
 $app = new SyncApiApp(
     [
         'displayErrorDetails' => $debugModel,
         'debug_mode' => $debugModel,
         'api_modulo' => 10000019,
-        'db_path' => $basePath . "app/data.sqlite",
-        'db_template_path' => $basePath . "app/data_template.sqlite",
-        'file_path' => $basePath . "app/files",
-        'cache_path' => $basePath . "app/cache",
-        'log_path' => $basePath . "app/logs",
-        'template_path' => $basePath . "app/templates",
-        'public_path' => $basePath . "src/public"
+        'db_path' => $basePath . "app" . $ds . "data" . $ds . "data.sqlite",
+        'db_template_path' => $basePath . "app" . $ds . "data" . $ds . "data_template.sqlite",
+        'file_path' => $basePath . "app" . $ds . "files",
+        'cache_path' => $basePath . "app" . $ds . "cache",
+        'log_path' => $basePath . "app" . $ds . "logs",
+        'template_path' => $basePath . "app" . $ds . "templates",
+        'public_path' => $basePath . "src" . $ds . "public"
     ]
 );
 
