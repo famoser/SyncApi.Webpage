@@ -55,7 +55,7 @@ class EntityController extends AbstractApiSyncController
             ContentType::ENTITY
         );
 
-        return $this->returnJson($response, $resp);
+        return $this->returnJson($req, $response, $resp);
     }
 
     /**
@@ -122,7 +122,7 @@ class EntityController extends AbstractApiSyncController
             $resp->CollectionEntities[] = $entity->createCommunicationEntity($newOne, OnlineAction::CREATE);
         }
 
-        return $this->returnJson($response, $resp);
+        return $this->returnJson($req, $response, $resp);
     }
 
     /**

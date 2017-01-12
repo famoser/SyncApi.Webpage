@@ -50,7 +50,7 @@ class CollectionController extends AbstractApiSyncController
             ContentType::COLLECTION
         );
 
-        return $this->returnJson($response, $resp);
+        return $this->returnJson($req, $response, $resp);
     }
 
     /**

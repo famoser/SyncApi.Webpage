@@ -54,7 +54,7 @@ class DeviceController extends AbstractApiSyncController
             [OnlineAction::READ, OnlineAction::CONFIRM_VERSION]
         );
 
-        return $this->returnJson($response, $resp);
+        return $this->returnJson($req, $response, $resp);
     }
 
     /**
@@ -115,7 +115,7 @@ class DeviceController extends AbstractApiSyncController
             throw new ServerException(ServerError::DATABASE_SAVE_FAILURE);
         }
 
-        return $this->returnJson($response, new AuthorizationResponse());
+        return $this->returnJson($req, $response, new AuthorizationResponse());
     }
 
     /**

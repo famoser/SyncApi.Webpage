@@ -9,6 +9,7 @@
 namespace Famoser\SyncApi\Controllers\Base;
 
 use Famoser\SyncApi\Exceptions\ApiException;
+use Famoser\SyncApi\Exceptions\ServerException;
 use Famoser\SyncApi\Models\Communication\Request\Base\BaseRequest;
 use Famoser\SyncApi\Models\Communication\Response\Base\BaseResponse;
 use Famoser\SyncApi\Models\Entities\Application;
@@ -17,6 +18,8 @@ use Famoser\SyncApi\Models\Entities\Device;
 use Famoser\SyncApi\Models\Entities\User;
 use Famoser\SyncApi\Models\Entities\UserCollection;
 use Famoser\SyncApi\Types\ApiError;
+use Famoser\SyncApi\Types\ServerError;
+use Guzzle\Http\Message\Request;
 use Slim\Http\Response;
 
 /**
@@ -58,10 +61,11 @@ class ApiRequestController extends BaseController
      * checks if request is valid: checks authentication code & existence of user & application
      *
      * @param  BaseRequest $req
+     * @param $requestMagicNumber
      * @return bool
      * @throws ApiException
      */
-    protected function authorizeRequest(BaseRequest $req)
+    protected function authorizeRequest(BaseRequest $req, $requestMagicNumber = 0)
     {
         $application = $this->getApplication($req->ApplicationId);
         $user = $this->getUser($req);
@@ -69,7 +73,10 @@ class ApiRequestController extends BaseController
         if (!$this->getRequestService()->isAuthenticationCodeValid(
             $req->AuthorizationCode,
             $application->application_seed,
-            $user->personal_seed
+            $user->personal_seed,
+            $this->getSettingsArray()['api_modulo'],
+            $user->total_request_count,
+            $requestMagicNumber
         )
         ) {
             throw new ApiException(ApiError::AUTHORIZATION_CODE_INVALID);
@@ -211,12 +218,22 @@ class ApiRequestController extends BaseController
     /**
      * returns model as json
      *
+     * @param BaseRequest $request
      * @param  Response $response
-     * @param  $model
+     * @param BaseResponse $model
      * @return Response
+     * @throws ServerException
      */
-    protected function returnJson(Response $response, BaseResponse $model)
+    protected function returnJson(BaseRequest $request, Response $response, BaseResponse $model)
     {
+        if (!$model->RequestFailed) {
+            //increase user count
+            $user = $this->getUser($request);
+            $user->total_request_count += 1;
+            if (!$this->getDatabaseService()->saveToDatabase($user)) {
+                throw new ServerException(ServerError::DATABASE_SAVE_FAILURE);
+            }
+        }
         $response->write(json_encode($model));
         return $response->withHeader('Content-Type', 'application/json');
     }

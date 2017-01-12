@@ -53,8 +53,10 @@ interface RequestServiceInterface
      * @param string $authCode
      * @param integer $applicationSeed
      * @param string $personSeed
-     * @param int $modulo
+     * @param int $apiModulo
+     * @param $requestCount
+     * @param $requestMagicNumber
      * @return bool
      */
-    public function isAuthenticationCodeValid($authCode, $applicationSeed, $personSeed, $modulo = 10000019);
+    public function isAuthenticationCodeValid($authCode, $applicationSeed, $personSeed, $apiModulo, $requestCount, $requestMagicNumber);
 }

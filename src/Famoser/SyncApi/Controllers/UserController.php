@@ -65,6 +65,6 @@ class UserController extends ApiRequestController
             }
         }
 
-        return $this->returnJson($response, new AuthorizationResponse());
+        return $this->returnJson($req, $response, new AuthorizationResponse());
     }
 }
