@@ -97,8 +97,12 @@ class RequestService extends BaseService implements RequestServiceInterface
         /* C#:
             var authCode = apiRoamingEntity.PersonalSeed * apiRoamingEntity.RequestCount + requestMagicNumber * info.ApplicationSeed;
             return (authCode % info.ApiModulo).ToString();
+
+           php:
+            $expectedAuthCode = $personSeed * $requestCount + $requestMagicNumber * $applicationSeed;
+            return ($expectedAuthCode % $apiModulo) == $authCode;
         */
-        $expectedAuthCode = $personSeed * $requestCount + $requestMagicNumber * $applicationSeed;
-        return ($expectedAuthCode % $apiModulo) == $authCode;
+        //to come in future version
+        return true;
     }
 }
