@@ -129,9 +129,10 @@ class ApplicationController extends FrontendController
     {
         $this->ensureHasAccess();
         $application = $this->getAuthorizedApplication($args['id']);
-        $settingsRepo = new SettingsRepository($this->getDatabaseService(), $application->id);
+        $settingsRepo = $this->getSettingRepository($application->application_id);
         $settingsRepo->setSettings($request->getParsedBody());
         $args['settings'] = $settingsRepo->getAllSettings();
+        $args['application'] = $application;
         return $this->renderTemplate($response, 'application/settings', $args);
     }
 

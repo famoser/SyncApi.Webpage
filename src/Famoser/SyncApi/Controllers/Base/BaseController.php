@@ -25,8 +25,9 @@ class BaseController extends ContainerBase
 {
     /**
      * get SettingsRepository for the specified application
+     * CAREFUL: use application_id (which is a unique string) not the id int!
      *
-     * @param  int $applicationId
+     * @param  string $applicationId
      * @return SettingsRepository
      */
     protected function getSettingRepository($applicationId)
