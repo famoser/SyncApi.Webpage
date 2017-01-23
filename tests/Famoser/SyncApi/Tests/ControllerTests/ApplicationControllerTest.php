@@ -220,7 +220,7 @@ class ApplicationControllerTest extends FrontendTestController
         $newSettings = [];
         foreach ($originSetting as $item) {
             if (is_numeric($item->value)) {
-                $newSettings[$item->key] = $item->value + 1;
+                $newSettings[$item->key] = $item->value + 3;
             } else if (is_string($item->value)) {
                 if ($item->value == "true") {
                     $newSettings[$item->key] = "false";
@@ -243,7 +243,7 @@ class ApplicationControllerTest extends FrontendTestController
         //reconstruct settings repo & try again
         $settingsRepo = new SettingsRepository(
             $containerBase->getDatabaseService(),
-            $this->getTestHelper()->getTestApplication()->id
+            $this->getTestHelper()->getTestApplication()->application_id
         );
         $savedSettings = $settingsRepo->getAllSettings();
         foreach ($savedSettings as $item) {
