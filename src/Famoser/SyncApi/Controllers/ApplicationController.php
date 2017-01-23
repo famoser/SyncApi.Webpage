@@ -183,11 +183,11 @@ class ApplicationController extends FrontendController
             -1,
             'collection_guid'
         );
+
         $collectionGuids = [];
         foreach ($userCollections as $userCollection) {
-            $collectionGuids[$userCollection->collection_guid] = true;
+            $collectionGuids[] = $userCollection->collection_guid;
         }
-        $collectionGuids = array_keys($collectionGuids);
         $appStats->collectionsCount = count($collectionGuids);
         if ($appStats->collectionsCount == 0) {
             return $appStats;
