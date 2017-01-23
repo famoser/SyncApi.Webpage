@@ -193,10 +193,10 @@ class ApplicationController extends FrontendController
             return $appStats;
         }
 
-        $appStats->itemsCount = (int)$this->getDatabaseService()->countFromDatabase(
+        $appStats->entitiesCount = (int)$this->getDatabaseService()->countFromDatabase(
             new Entity(),
-            'collection_guid IN (:' . implode(',:', array_keys($collectionGuids)) . ')',
-            $collectionGuids
+            'user_guid IN (:' . implode(',:', array_keys($userGuids)) . ')',
+            $userGuids
         );
         return $appStats;
     }
