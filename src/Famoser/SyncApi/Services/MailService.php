@@ -21,7 +21,6 @@ use Swift_SmtpTransport;
  */
 class MailService extends BaseService implements MailServiceInterface
 {
-
     /**
      * sends an email to the specified recipient(s)
      * @param string $sender

@@ -129,7 +129,7 @@ class AuthorizationController extends AbstractApiSyncController
         }
 
         //return successful notice
-        return $this->returnJson($response, new AuthorizationResponse());
+        return $this->returnJson($req, $response, new AuthorizationResponse());
     }
 
     /**
@@ -169,7 +169,7 @@ class AuthorizationController extends AbstractApiSyncController
         //return auth code to device
         $resp = new AuthorizationResponse();
         $resp->ServerMessage = $authCode->code;
-        return $this->returnJson($response, $resp);
+        return $this->returnJson($req, $response, $resp);
     }
 
     /**
@@ -188,7 +188,7 @@ class AuthorizationController extends AbstractApiSyncController
         $this->authenticateRequest($req);
 
         $resp = new AuthorizationResponse();
-        return $this->returnJson($response, $resp);
+        return $this->returnJson($req, $response, $resp);
     }
 
     /**
@@ -239,7 +239,7 @@ class AuthorizationController extends AbstractApiSyncController
         }
         $resp = new AuthorizationResponse();
 
-        return $this->returnJson($response, $resp);
+        return $this->returnJson($req, $response, $resp);
     }
 
     /**

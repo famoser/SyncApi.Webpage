@@ -18,5 +18,5 @@ class ApplicationStatistic
     public $usersCount = 0;
     public $devicesCount = 0;
     public $collectionsCount = 0;
-    public $itemsCount = 0;
+    public $entitiesCount = 0;
 }

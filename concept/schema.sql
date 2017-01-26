@@ -14,6 +14,7 @@ CREATE TABLE 'users' (
   'identifier'     TEXT    DEFAULT NULL,
   'guid'           TEXT    DEFAULT NULL,
   'personal_seed'  TEXT    DEFAULT NULL,
+  'total_request_count' INTEGER DEFAULT 0,
   'is_deleted'     INTEGER DEFAULT NULL
 );
 

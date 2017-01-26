@@ -84,36 +84,25 @@ class RequestService extends BaseService implements RequestServiceInterface
     }
 
     /**
-     * @param $authCode
-     * @param $applicationSeed
-     * @param $personSeed
-     * @param int $modulo
+     * @param string $authCode
+     * @param int $applicationSeed
+     * @param int $personSeed
+     * @param int $apiModulo
+     * @param int $requestCount
+     * @param int $requestMagicNumber
      * @return bool
      */
-    public function isAuthenticationCodeValid($authCode, $applicationSeed, $personSeed, $modulo = 10000019)
+    public function isAuthenticationCodeValid($authCode, $applicationSeed, $personSeed, $apiModulo, $requestCount, $requestMagicNumber)
     {
-        //return true if $applicationSeed is 0 (= not configured)
-        if ($applicationSeed == 0) {
-            return true;
-        }
+        /* C#:
+            var authCode = apiRoamingEntity.PersonalSeed * apiRoamingEntity.RequestCount + requestMagicNumber * info.ApplicationSeed;
+            return (authCode % info.ApiModulo).ToString();
 
-        $content = explode('_', $authCode);
-        //parse time from $content[0]
-        $chunks = chunk_split($content[0], 2);
-        if (count($chunks) != 4) {
-            return false;
-        }
-        //check if time is valid
-        $time = strtotime('today + ' . $chunks[0] . ' seconds ' . $chunks[1] . ' minutes ' . $chunks[2] . ' hours');
-        $older = new \DateTime('+ 1 minute');
-        $newer = new \DateTime('- 1 minute');
-        if ($time < $newer && $time > $older) {
-            //construct magic number (the same is done in c#)
-            $baseNr = $chunks[0] + $chunks[1] * 100 + $chunks[2] * 10000 + $chunks[3];
-            $expectedAuthCode = $baseNr * $applicationSeed * $personSeed;
-            $expectedAuthCode %= $this->getModulo();
-            return $content[1] == $expectedAuthCode;
-        }
-        return false;
+           php:
+            $expectedAuthCode = $personSeed * $requestCount + $requestMagicNumber * $applicationSeed;
+            return ($expectedAuthCode % $apiModulo) == $authCode;
+        */
+        //to come in future version
+        return true;
     }
 }

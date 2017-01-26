@@ -129,9 +129,10 @@ class ApplicationController extends FrontendController
     {
         $this->ensureHasAccess();
         $application = $this->getAuthorizedApplication($args['id']);
-        $settingsRepo = new SettingsRepository($this->getDatabaseService(), $application->id);
+        $settingsRepo = $this->getSettingRepository($application->application_id);
         $settingsRepo->setSettings($request->getParsedBody());
         $args['settings'] = $settingsRepo->getAllSettings();
+        $args['application'] = $application;
         return $this->renderTemplate($response, 'application/settings', $args);
     }
 
@@ -183,20 +184,20 @@ class ApplicationController extends FrontendController
             -1,
             'collection_guid'
         );
+
         $collectionGuids = [];
         foreach ($userCollections as $userCollection) {
-            $collectionGuids[$userCollection->collection_guid] = true;
+            $collectionGuids[] = $userCollection->collection_guid;
         }
-        $collectionGuids = array_keys($collectionGuids);
         $appStats->collectionsCount = count($collectionGuids);
         if ($appStats->collectionsCount == 0) {
             return $appStats;
         }
 
-        $appStats->itemsCount = (int)$this->getDatabaseService()->countFromDatabase(
+        $appStats->entitiesCount = (int)$this->getDatabaseService()->countFromDatabase(
             new Entity(),
-            'collection_guid IN (:' . implode(',:', array_keys($collectionGuids)) . ')',
-            $collectionGuids
+            'user_guid IN (:' . implode(',:', array_keys($userGuids)) . ')',
+            $userGuids
         );
         return $appStats;
     }
