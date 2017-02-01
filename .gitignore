@@ -14,8 +14,7 @@ app/logs/*
 
 #excluding runtime data
 app/data/*
-!app/data/data_template.sqlite
-!app/data/data_test_template.sqlite
+!app/data/.gitkeep
 
 #ecluding precompiled asset files 
 src/public/dist/css/pre/
@@ -30,3 +29,4 @@ servers.yml
 build/logs/clover.xml
 mail-*-*-*.txt
 
+build/

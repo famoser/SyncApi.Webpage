@@ -7,7 +7,6 @@ php:
     
 install:
     - composer install --dev
-    - chmod -R 755 app/data
 
 after_script:
   - ./vendor/bin/test-reporter
