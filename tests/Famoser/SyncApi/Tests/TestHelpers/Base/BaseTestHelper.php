@@ -79,7 +79,7 @@ abstract class BaseTestHelper extends ContainerBase
                 'debug_mode' => true,
                 'api_modulo' => 10000019,
                 'db_path' => $basePath . "app" . $ds . "data" . $ds . "data_test_" . uniqid() . ".sqlite",
-                'db_template_path' => $basePath . "app" . $ds . "data" . $ds . "data_test_template.sqlite",
+                'db_template_path' => $basePath . "app" . $ds . "data_templates" . $ds . "data_test_template.sqlite",
                 'file_path' => $basePath . "app" . $ds . "files",
                 'cache_path' => $basePath . "app" . $ds . "cache",
                 'log_path' => $basePath . "app" . $ds . "logs",
