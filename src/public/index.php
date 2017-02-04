@@ -14,14 +14,14 @@ $ds = DIRECTORY_SEPARATOR;
 $oneUp = ".." . $ds;
 $basePath = realpath(__DIR__ . "/" . $oneUp . $oneUp) . $ds;
 
-$debugModel = !file_exists(".prod");
+$debugMode = !file_exists(".prod");
 
 require '..' . $ds . '..' . $ds . 'vendor' . $ds . 'autoload.php';
 
 $app = new SyncApiApp(
     [
-        'displayErrorDetails' => $debugModel,
-        'debug_mode' => $debugModel,
+        'displayErrorDetails' => $debugMode,
+        'debug_mode' => $debugMode,
         'api_modulo' => 10000019,
         'db_path' => $basePath . "app" . $ds . "data" . $ds . "data.sqlite",
         'db_template_path' => $basePath . "app" . $ds . "data_templates" . $ds . "data_template.sqlite",
