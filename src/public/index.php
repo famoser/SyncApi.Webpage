@@ -27,7 +27,7 @@ $app = new SyncApiApp(
         'db_template_path' => $basePath . "app" . $ds . "data_templates" . $ds . "data_template.sqlite",
         'file_path' => $basePath . "app" . $ds . "files",
         'cache_path' => $basePath . "app" . $ds . "cache",
-        'log_path' => $basePath . "app" . $ds . "logs",
+        'log_file_path' => $basePath . "app" . $ds . "logs" . $ds . "log.log",
         'template_path' => $basePath . "app" . $ds . "templates",
         'public_path' => $basePath . "src" . $ds . "public"
     ]

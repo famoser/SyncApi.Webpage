@@ -33,8 +33,8 @@ class BaseService extends ContainerBase
      *
      * @return string
      */
-    protected function getLoggingBasePath()
+    protected function getLoggingFilePath()
     {
-        return $this->getSettingsArray()['log_path'];
+        return $this->getSettingsArray()['log_file_path'];
     }
 }

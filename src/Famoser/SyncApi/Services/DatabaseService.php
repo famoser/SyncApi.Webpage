@@ -116,25 +116,11 @@ class DatabaseService extends BaseService implements DatabaseServiceInterface
      */
     private function executeAndFetch(BaseEntity $entity, $sql, $parameters = null)
     {
-        try {
-            $request = $this->getConnection()->prepare($sql);
-            if (!$request->execute($parameters)) {
-                $this->getLoggingService()->log(
-                    $sql . '     ' . json_encode($parameters),
-                    'DatabaseHelper' . uniqid() . '.txt'
-                );
-                return [];
-            }
-            return $request->fetchAll(PDO::FETCH_CLASS, get_class($entity));
-        } catch (\Exception $ex) {
-            $this->getLoggingService()->log(
-                $ex->getMessage() . '     ' .
-                $ex->getTraceAsString() . '     ' .
-                $sql . '     ' . json_encode($parameters),
-                'DatabaseHelper.txt'
-            );
+        $request = $this->getConnection()->prepare($sql);
+        if (!$request->execute($parameters)) {
+            return [];
         }
-        return null;
+        return $request->fetchAll(PDO::FETCH_CLASS, get_class($entity));
     }
 
     /**
@@ -262,10 +248,6 @@ class DatabaseService extends BaseService implements DatabaseServiceInterface
     public function saveToDatabase(BaseEntity $entity)
     {
         $properties = (array)$entity;
-        $this->getLoggingService()->log(
-            json_encode($properties, JSON_PRETTY_PRINT) . '\n\n\n' . json_encode($entity, JSON_PRETTY_PRINT),
-            'DatabaseHelper_' . $entity->getTableName() . '_' . time() . '_' . uniqid() . '.txt'
-        );
         unset($properties['id']);
         if ($entity->id > 0) {
             //update

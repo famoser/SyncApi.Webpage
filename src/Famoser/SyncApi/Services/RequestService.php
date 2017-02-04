@@ -79,7 +79,6 @@ class RequestService extends BaseService implements RequestServiceInterface
         $mapper = new SimpleJsonMapper();
         $objProp = new ObjectProperty('root', $model);
         $resObj = $mapper->mapObject($json, $objProp);
-        $this->getLoggingService()->log(json_encode($resObj, JSON_PRETTY_PRINT), 'RequestHelper.txt');
         return $resObj;
     }
 

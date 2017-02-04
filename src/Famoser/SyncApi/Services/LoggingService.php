@@ -22,15 +22,10 @@ class LoggingService extends BaseService implements LoggingServiceInterface
      * log your message
      *
      * @param $message
-     * @param $filename
-     * @param bool $clearOld
      */
-    public function log($message, $filename, $clearOld = true)
+    public function log($message)
     {
-        $path = $this->getLoggingBasePath() . '/' . $filename;
-        if ($clearOld && file_exists($path)) {
-            unlink($path);
-        }
+        $path = $this->getLoggingFilePath();
         file_put_contents($path, $message, FILE_APPEND);
     }
 
@@ -41,6 +36,6 @@ class LoggingService extends BaseService implements LoggingServiceInterface
      */
     public function getLogPath()
     {
-        return $this->getLoggingBasePath();
+        return $this->getLoggingFilePath();
     }
 }
