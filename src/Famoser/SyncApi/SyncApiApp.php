@@ -14,6 +14,7 @@ use Famoser\SyncApi\Exceptions\FrontendException;
 use Famoser\SyncApi\Middleware\LoggingMiddleware;
 use Famoser\SyncApi\Models\Communication\Response\Base\BaseResponse;
 use Famoser\SyncApi\Services\DatabaseService;
+use Famoser\SyncApi\Services\Interfaces\LoggingServiceInterface;
 use Famoser\SyncApi\Services\LoggingService;
 use Famoser\SyncApi\Services\MailService;
 use Famoser\SyncApi\Services\RequestService;
@@ -73,8 +74,7 @@ class SyncApiApp extends App
             )
         );
 
-        //add middleware
-        $this->add(new LoggingMiddleware($this->getContainer()));
+        //add middleware (none)
 
         //add routes
         $this->group('', $this->getWebAppRoutes());
@@ -271,12 +271,19 @@ class SyncApiApp extends App
     {
         return function () use ($container, $apiError) {
             return function (ServerRequestInterface $request, ResponseInterface $response) use ($container, $apiError) {
+
+                /* @var LoggingServiceInterface $logger */
+                $logger =  $container[SyncApiApp::LOGGING_SERVICE_KEY];
+                $logger->log(
+                    "[".date("c")."]: not found / not allowed " . $request->getUri()
+                );
+
                 if ($this->isApiRequest($request)) {
                     $resp = new BaseResponse();
                     $resp->RequestFailed = true;
                     $resp->ApiError = $apiError;
                     $resp->ServerMessage = ApiError::toString($apiError);
-                    return $container['response']->withStatus(500)->withJson($resp);
+                    return $response->withStatus(500)->withJson($resp);
                 }
                 return $container['view']->render($response, 'public/not_found.html.twig', []);
             };
@@ -301,9 +308,10 @@ class SyncApiApp extends App
                     $errorString = 'unknown error type occurred :/. Details: ' . print_r($error);
                 }
 
-                $cont[SyncApiApp::LOGGING_SERVICE_KEY]->log(
-                    $errorString,
-                    'exception.txt'
+                /* @var LoggingServiceInterface $logger */
+                $logger =  $cont[SyncApiApp::LOGGING_SERVICE_KEY];
+                $logger->log(
+                    "[".date("c")."]: ".$errorString
                 );
 
                 //return json if api request

@@ -1,0 +1,26 @@
+production:
+  host: ftp.myserver.ch
+  port: 22
+  user: myuser
+  password: mypass
+  branch: master
+  stage: production
+  deploy_path: ~/www/deploy/syncapi.myserver.ch/prod
+
+testing:
+  host: ftp.myserver.ch
+  port: 22
+  user: myuser
+  password: mypass
+  branch: master
+  stage: testing
+  deploy_path: ~/www/deploy/syncapi.myserver.ch/testing
+
+dev:
+  host: ftp.myserver.ch
+  port: 22
+  user: myuser
+  password: mypass
+  branch: develop
+  stage: dev
+  deploy_path: ~/www/deploy/syncapi.myserver.ch/dev

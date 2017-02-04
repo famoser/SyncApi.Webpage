@@ -19,11 +19,9 @@ interface LoggingServiceInterface
      * log your message
      *
      * @param string $message
-     * @param string $filename
-     * @param bool $clearOld
      * @return void
      */
-    public function log($message, $filename, $clearOld = true);
+    public function log($message);
 
     /**
      * get path where the log files are saved

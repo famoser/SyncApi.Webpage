@@ -9,6 +9,12 @@ set('writable_dirs', ['app/logs', 'app/cache', 'app/data']);
 set('clear_paths', ["app/cache"]);
 set('http_user', 'floria74');
 
+//I need this config for my hoster
+set(
+    'composer_options',
+    '{{composer_action}} --verbose --prefer-dist --no-progress --no-interaction --no-dev --optimize-autoloader --ignore-platform-reqs'
+);
+
 // import servers
 serverList('servers.yml');
 
