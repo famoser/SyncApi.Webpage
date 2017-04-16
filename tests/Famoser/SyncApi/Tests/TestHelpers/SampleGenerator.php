@@ -10,6 +10,11 @@ namespace Famoser\SyncApi\Tests\TestHelpers;
 
 
 use Famoser\SyncApi\Models\Communication\Entities\Base\BaseCommunicationEntity;
+use Famoser\SyncApi\Models\Communication\Request\CollectionEntityRequest;
+use Famoser\SyncApi\Models\Communication\Request\DeviceEntityRequest;
+use Famoser\SyncApi\Models\Communication\Request\HistoryEntityRequest;
+use Famoser\SyncApi\Models\Communication\Request\SyncEntityRequest;
+use Famoser\SyncApi\Models\Communication\Response\DeviceEntityResponse;
 use Famoser\SyncApi\Types\OnlineAction;
 
 /**
@@ -19,6 +24,8 @@ use Famoser\SyncApi\Types\OnlineAction;
  */
 class SampleGenerator
 {
+    const IDENTIFIER = "json_obj";
+
     /**
      * create a guid
      *
@@ -75,6 +82,46 @@ class SampleGenerator
         $entity->OnlineAction = OnlineAction::CREATE;
         $entity->Content = "{}";
         $entity->CreateDateTime = date("c");
-        $entity->Identifier = "empty_json_obj";
+        $entity->Identifier = SampleGenerator::IDENTIFIER;
+    }
+
+    /**
+     * @return DeviceEntityRequest
+     */
+    public static function createDeviceEntityRequest()
+    {
+        $req = new DeviceEntityRequest();
+        $req->Identifier = SampleGenerator::IDENTIFIER;
+        return $req;
+    }
+
+    /**
+     * @return HistoryEntityRequest
+     */
+    public static function createHistoryEntityRequest()
+    {
+        $req = new HistoryEntityRequest();
+        $req->Identifier = SampleGenerator::IDENTIFIER;
+        return $req;
+    }
+
+    /**
+     * @return CollectionEntityRequest
+     */
+    public static function createCollectionEntityRequest()
+    {
+        $req = new CollectionEntityRequest();
+        $req->Identifier = SampleGenerator::IDENTIFIER;
+        return $req;
+    }
+
+    /**
+     * @return SyncEntityRequest
+     */
+    public static function createSyncEntityRequest()
+    {
+        $req = new SyncEntityRequest();
+        $req->Identifier = SampleGenerator::IDENTIFIER;
+        return $req;
     }
 }

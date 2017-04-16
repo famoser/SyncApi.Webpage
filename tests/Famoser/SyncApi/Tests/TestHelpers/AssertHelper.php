@@ -57,13 +57,15 @@ class AssertHelper
         ResponseInterface $response
     )
     {
+        $responseString = static::getResponseString($response);
+
         //valid status code
-        $testingUnit->assertEquals(200, $response->getStatusCode());
+        $testingUnit->assertEquals(200, $response->getStatusCode(), $responseString);
 
         //no error in json response
-        $responseString = static::getResponseString($response);
         $testingUnit->assertContains("\"ApiError\":0", $responseString);
         $testingUnit->assertContains("\"RequestFailed\":false", $responseString);
+
 
         return $responseString;
     }
