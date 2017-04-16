@@ -39,6 +39,9 @@ class Entity extends BaseSyncEntity
     /* @var string $collection_guid type_of:guid */
     public $collection_guid;
 
+    /* @var string $identifier */
+    public $identifier;
+
     /**
      * get the name of the table from the database
      *

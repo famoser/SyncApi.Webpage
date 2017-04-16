@@ -38,6 +38,9 @@ class User extends BaseSyncEntity
     /* @var int $personal_seed */
     public $total_request_count = 0;
 
+    /* @var string $identifier */
+    public $identifier;
+
     /**
      * get the name of the table from the database
      *

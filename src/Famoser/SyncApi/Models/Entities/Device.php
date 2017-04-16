@@ -35,6 +35,9 @@ class Device extends BaseSyncEntity
     /* @var bool $is_authenticated */
     public $is_authenticated = false;
 
+    /* @var string $identifier */
+    public $identifier;
+
     /**
      * get the name of the table from the database
      *

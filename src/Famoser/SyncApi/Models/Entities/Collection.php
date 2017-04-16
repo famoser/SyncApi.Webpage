@@ -36,6 +36,9 @@ class Collection extends BaseSyncEntity
     /* @var string $device_guid type_of:guid */
     public $device_guid;
 
+    /* @var string $identifier */
+    public $identifier;
+
     /**
      * get the name of the table from the database
      *
