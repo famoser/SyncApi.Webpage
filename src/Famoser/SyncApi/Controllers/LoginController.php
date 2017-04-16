@@ -42,7 +42,7 @@ class LoginController extends FrontendController
      * @param Request $request
      * @param Response $response
      * @param $args
-     * @return mixed|static
+     * @return mixed
      */
     public function loginPost(Request $request, Response $response, $args)
     {
@@ -82,7 +82,7 @@ class LoginController extends FrontendController
      * @param Request $request
      * @param Response $response
      * @param $args
-     * @return mixed|static
+     * @return mixed
      * @throws ServerException
      */
     public function registerPost(Request $request, Response $response, $args)
@@ -147,6 +147,7 @@ class LoginController extends FrontendController
     {
         $req = $request->getParsedBody();
         if (isset($req['username']) && isset($req['email'])) {
+            /* @var FrontendUser $user  */
             $user = $this->getDatabaseService()->getSingleFromDatabase(
                 new FrontendUser(),
                 'username = :username AND email = :email',
@@ -190,7 +191,7 @@ class LoginController extends FrontendController
      * @param Request $request
      * @param Response $response
      * @param $args
-     * @return mixed|static
+     * @return mixed
      * @throws ServerException
      */
     public function recoverPost(Request $request, Response $response, $args)

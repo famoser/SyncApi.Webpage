@@ -14,6 +14,7 @@ use Famoser\SyncApi\Framework\Json\SimpleJsonMapper;
 use Famoser\SyncApi\Interfaces\JsonDeserializableInterface;
 use Famoser\SyncApi\Models\Communication\Request\AuthorizationRequest;
 use Famoser\SyncApi\Models\Communication\Request\CollectionEntityRequest;
+use Famoser\SyncApi\Models\Communication\Request\DeviceEntityRequest;
 use Famoser\SyncApi\Models\Communication\Request\HistoryEntityRequest;
 use Famoser\SyncApi\Models\Communication\Request\SyncEntityRequest;
 use Famoser\SyncApi\Services\Base\BaseService;
@@ -103,5 +104,15 @@ class RequestService extends BaseService implements RequestServiceInterface
         */
         //to come in future version
         return true;
+    }
+
+    /**
+     * @param Request $request
+     * @return DeviceEntityRequest
+     * @throws \JsonMapper_Exception
+     */
+    public function parseDeviceEntityRequest(Request $request)
+    {
+        return $this->executeJsonMapper($request, new DeviceEntityRequest());
     }
 }
