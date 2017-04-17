@@ -197,6 +197,7 @@ class EntityController extends AbstractApiSyncController
         $entity->collection_guid = $commEntity->CollectionId;
         $entity->device_guid = $this->getDevice($req)->guid;
         $entity->user_guid = $this->getUser($req)->guid;
+        $entity->identifier = $req->Identifier;
         return $entity;
     }
 }
