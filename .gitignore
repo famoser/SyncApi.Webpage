@@ -22,7 +22,6 @@ src/public/dist/fonts/pre/
 src/public/dist/js/pre/
 
 #excluding deployment files
-deployer.phar
 servers.yml
 
 #excluding test data

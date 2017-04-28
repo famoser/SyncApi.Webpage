@@ -291,6 +291,7 @@ class AuthorizationController extends AbstractApiSyncController
             $user = new User();
             $user->application_id = $req->ApplicationId;
             $user->personal_seed = $req->UserEntity->PersonalSeed;
+            $user->identifier = $req->UserEntity->Identifier;
 
             return $user;
         } elseif ($contentType == ContentType::DEVICE) {
@@ -304,6 +305,7 @@ class AuthorizationController extends AbstractApiSyncController
 
             $device = new Device();
             $device->user_guid = $this->getUser($req)->guid;
+            $device->identifier = $req->DeviceEntity->Identifier;
             $device->is_authenticated = !$settingsRepo->getDeviceAuthenticationRequired() || ($deviceCount == 0);
 
             return $device;

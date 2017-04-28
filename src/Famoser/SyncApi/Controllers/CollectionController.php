@@ -112,6 +112,7 @@ class CollectionController extends AbstractApiSyncController
         $coll = new Collection();
         $coll->user_guid = $this->getUser($req)->guid;
         $coll->device_guid = $this->getDevice($req)->guid;
+        $coll->identifier = $req->Identifier;
         return $coll;
     }
 }

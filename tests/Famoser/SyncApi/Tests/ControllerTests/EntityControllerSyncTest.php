@@ -30,7 +30,7 @@ class EntityControllerSyncTest extends ApiTestController
     public function testCreateSync()
     {
         //test create
-        $syncRequest = new SyncEntityRequest();
+        $syncRequest = SampleGenerator::createSyncEntityRequest();
         $this->testHelper->authorizeRequest($syncRequest);
 
         $syncRequest->UserId = $this->testHelper->getUserId();
@@ -56,7 +56,7 @@ class EntityControllerSyncTest extends ApiTestController
     public function testExplicitReadSync()
     {
         //test create
-        $syncRequest = new SyncEntityRequest();
+        $syncRequest = SampleGenerator::createSyncEntityRequest();
         $this->testHelper->authorizeRequest($syncRequest);
 
         $syncRequest->UserId = $this->testHelper->getUserId();
@@ -76,7 +76,7 @@ class EntityControllerSyncTest extends ApiTestController
         AssertHelper::checkForSavedEntity($this, $collEntity, $this->testHelper->getTestApp());
 
         //test read
-        $syncRequest2 = new SyncEntityRequest();
+        $syncRequest2 = SampleGenerator::createSyncEntityRequest();
         $this->testHelper->authorizeRequest($syncRequest2);
 
         $syncRequest2->UserId = $syncRequest->UserId;
@@ -116,7 +116,7 @@ class EntityControllerSyncTest extends ApiTestController
     public function testImplicitReadSync()
     {
         //test create
-        $syncRequest = new SyncEntityRequest();
+        $syncRequest = SampleGenerator::createSyncEntityRequest();
         $this->testHelper->authorizeRequest($syncRequest);
 
         $syncRequest->UserId = $this->testHelper->getUserId();
@@ -137,7 +137,7 @@ class EntityControllerSyncTest extends ApiTestController
         AssertHelper::checkForSavedEntity($this, $collEntity, $this->testHelper->getTestApp());
 
         //test read
-        $syncRequest2 = new SyncEntityRequest();
+        $syncRequest2 = SampleGenerator::createSyncEntityRequest();
         $this->testHelper->authorizeRequest($syncRequest2);
 
         $syncRequest2->UserId = $syncRequest->UserId;
@@ -163,7 +163,7 @@ class EntityControllerSyncTest extends ApiTestController
     public function testUpdateSync()
     {
         //test create
-        $syncRequest = new SyncEntityRequest();
+        $syncRequest = SampleGenerator::createSyncEntityRequest();
         $this->testHelper->authorizeRequest($syncRequest);
 
         $syncRequest->UserId = $this->testHelper->getUserId();
@@ -183,7 +183,7 @@ class EntityControllerSyncTest extends ApiTestController
         AssertHelper::checkForSavedEntity($this, $collEntity, $this->testHelper->getTestApp());
 
         //test update
-        $syncRequest2 = new SyncEntityRequest();
+        $syncRequest2 = SampleGenerator::createSyncEntityRequest();
         $this->testHelper->authorizeRequest($syncRequest2);
 
         $syncRequest2->UserId = $syncRequest->UserId;
@@ -207,7 +207,7 @@ class EntityControllerSyncTest extends ApiTestController
     public function testDeleteSync()
     {
         //test create
-        $syncRequest = new SyncEntityRequest();
+        $syncRequest = SampleGenerator::createSyncEntityRequest();
         $this->testHelper->authorizeRequest($syncRequest);
 
         $syncRequest->UserId = $this->testHelper->getUserId();
@@ -227,7 +227,7 @@ class EntityControllerSyncTest extends ApiTestController
         AssertHelper::checkForSavedEntity($this, $collEntity, $this->testHelper->getTestApp());
 
         //test delete
-        $syncRequest2 = new SyncEntityRequest();
+        $syncRequest2 = SampleGenerator::createSyncEntityRequest();
         $this->testHelper->authorizeRequest($syncRequest2);
 
         $syncRequest2->UserId = $syncRequest->UserId;
@@ -251,7 +251,7 @@ class EntityControllerSyncTest extends ApiTestController
     public function testConfirmAccessSync()
     {
         //test create
-        $syncRequest = new SyncEntityRequest();
+        $syncRequest = SampleGenerator::createSyncEntityRequest();
         $this->testHelper->authorizeRequest($syncRequest);
 
         $syncRequest->UserId = $this->testHelper->getUserId();
@@ -272,7 +272,7 @@ class EntityControllerSyncTest extends ApiTestController
         AssertHelper::checkForSavedEntity($this, $collEntity, $this->testHelper->getTestApp());
 
         //test confirm version (no response)
-        $syncRequest2 = new SyncEntityRequest();
+        $syncRequest2 = SampleGenerator::createSyncEntityRequest();
         $this->testHelper->authorizeRequest($syncRequest2);
 
         $syncRequest2->UserId = $syncRequest->UserId;
@@ -291,7 +291,7 @@ class EntityControllerSyncTest extends ApiTestController
         AssertHelper::checkForSavedEntity($this, $collEntity, $this->testHelper->getTestApp());
 
         //test confirm version (active version response)
-        $syncRequest2 = new SyncEntityRequest();
+        $syncRequest2 = SampleGenerator::createSyncEntityRequest();
         $this->testHelper->authorizeRequest($syncRequest2);
 
         $syncRequest2->UserId = $syncRequest->UserId;
@@ -323,7 +323,7 @@ class EntityControllerSyncTest extends ApiTestController
     public function testMultipleActionSync()
     {
         //test create
-        $syncRequest = new SyncEntityRequest();
+        $syncRequest = SampleGenerator::createSyncEntityRequest();
         $this->testHelper->authorizeRequest($syncRequest);
 
         $syncRequest->UserId = $this->testHelper->getUserId();

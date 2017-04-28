@@ -134,7 +134,7 @@ class ApiTestHelper extends BaseTestHelper
         $user->personal_seed = 0;
         $user->application_id = static::TEST_APPLICATION_ID;
         $user->guid = SampleGenerator::createGuid();
-        $user->identifier = "json";
+        $user->identifier = SampleGenerator::IDENTIFIER;
         $user->is_deleted = false;
         $this->getDatabaseService()->saveToDatabase($user);
 
@@ -155,7 +155,7 @@ class ApiTestHelper extends BaseTestHelper
     {
         $device = new Device();
         $device->guid = SampleGenerator::createGuid();
-        $device->identifier = "json";
+        $device->identifier = SampleGenerator::IDENTIFIER;
         $device->is_deleted = false;
         $device->is_authenticated = $isAuthenticated;
         $device->user_guid = $userId;
@@ -177,7 +177,7 @@ class ApiTestHelper extends BaseTestHelper
     {
         $collection = new Collection();
         $collection->guid = SampleGenerator::createGuid();
-        $collection->identifier = "json";
+        $collection->identifier = SampleGenerator::IDENTIFIER;
         $collection->is_deleted = false;
         $collection->user_guid = $userId;
         $collection->device_guid = $deviceId;

@@ -202,40 +202,6 @@ class AuthorizationControllerTest extends ApiTestController
     }
 
     /**
-     * todo: add seconds device and try to sync them
-     */
-    public function testSyncDevices()
-    {
-        //add unauthorized device
-        $syncRequest = new AuthorizationRequest();
-        $this->testHelper->authorizeRequest($syncRequest);
-
-        $device = new DeviceCommunicationEntity();
-        SampleGenerator::createEntity($device);
-
-        $syncRequest->DeviceEntity = $device;
-        $syncRequest->UserId = $this->testHelper->getUserId();
-        $syncRequest->DeviceId = $device->Id;
-        //add primary device to user (which will be authenticated)
-        $this->testHelper->getDeviceId($syncRequest->UserId);
-
-        $this->testHelper->mockApiRequest($syncRequest, "auth/sync");
-        $response = $this->testHelper->getTestApp()->run();
-
-        //check for unauthorized device
-        AssertHelper::checkForSuccessfulApiResponse($this, $response);
-
-        $authRequest = new AuthorizationRequest();
-        $this->testHelper->authorizeRequest($authRequest);
-        $authRequest->UserId = $syncRequest->UserId;
-        $authRequest->DeviceId = $syncRequest->DeviceId;
-        $this->testHelper->mockApiRequest($authRequest, "auth/status");
-
-        $response = $this->testHelper->getTestApp()->run();
-        AssertHelper::checkForFailedApiResponse($this, $response, ApiError::DEVICE_NOT_AUTHORIZED);
-    }
-
-    /**
      * add second device and authorize it
      */
     public function testUseAuthenticationCode()
