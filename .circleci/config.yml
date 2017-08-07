@@ -17,8 +17,7 @@ jobs:
     working_directory: ~/SyncApi.Webpage
     steps:
       - checkout
-      - run: sudo apt install -y libsqlite3-dev
-      - run: composer self-update
+      - run: sudo apt install -y libsqlite3-dev composer
       - restore_cache:
           keys:
             - composer-v1-{{ checksum "composer.json" }}
