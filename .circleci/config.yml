@@ -19,6 +19,9 @@ jobs:
       - checkout
       - run: sudo apt install -y libsqlite3-dev curl
       - run: curl -sS https://getcomposer.org/installer | sudo php -- --install-dir=/usr/local/bin --filename=composer
+      - run: wget https://phar.phpunit.de/phpunit-6.2.phar
+      - run: chmod +x phpunit-6.2.phar
+      - run: sudo mv phpunit-6.2.phar /usr/local/bin/phpunit
       - restore_cache:
           keys:
             - composer-v1-{{ checksum "composer.json" }}
