@@ -17,7 +17,8 @@ jobs:
     working_directory: ~/SyncApi.Webpage
     steps:
       - checkout
-      - run: sudo apt install -y libsqlite3-dev composer
+      - run: sudo apt install -y libsqlite3-dev curl
+      - run curl -sS https://getcomposer.org/installer | sudo php -- --install-dir=/usr/local/bin --filename=composer
       - restore_cache:
           keys:
             - composer-v1-{{ checksum "composer.json" }}
