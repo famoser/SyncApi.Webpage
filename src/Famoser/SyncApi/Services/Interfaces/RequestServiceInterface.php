@@ -11,6 +11,7 @@ namespace Famoser\SyncApi\Services\Interfaces;
 
 use Famoser\SyncApi\Models\Communication\Request\AuthorizationRequest;
 use Famoser\SyncApi\Models\Communication\Request\CollectionEntityRequest;
+use Famoser\SyncApi\Models\Communication\Request\DeviceEntityRequest;
 use Famoser\SyncApi\Models\Communication\Request\HistoryEntityRequest;
 use Famoser\SyncApi\Models\Communication\Request\SyncEntityRequest;
 use Slim\Http\Request;
@@ -34,6 +35,13 @@ interface RequestServiceInterface
      * @throws \JsonMapper_Exception
      */
     public function parseCollectionEntityRequest(Request $request);
+
+    /**
+     * @param Request $request
+     * @return DeviceEntityRequest
+     * @throws \JsonMapper_Exception
+     */
+    public function parseDeviceEntityRequest(Request $request);
 
     /**
      * @param Request $request

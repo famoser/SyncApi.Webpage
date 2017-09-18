@@ -76,10 +76,11 @@ class CollectionController extends AbstractApiSyncController
             return [];
         }
 
+        $collectionIds["identifier"] = $req->Identifier;
         //get all collections
         return $this->getDatabaseService()->getFromDatabase(
             new Collection(),
-            'guid IN (:' . implode(',:', array_keys($collectionIds)) . ')',
+            'guid IN (:' . implode(',:', array_keys($collectionIds)) . ') AND identifier = :identifier',
             $collectionIds);
     }
 
@@ -111,6 +112,7 @@ class CollectionController extends AbstractApiSyncController
         $coll = new Collection();
         $coll->user_guid = $this->getUser($req)->guid;
         $coll->device_guid = $this->getDevice($req)->guid;
+        $coll->identifier = $req->Identifier;
         return $coll;
     }
 }

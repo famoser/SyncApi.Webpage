@@ -33,6 +33,9 @@ class BaseRequest implements JsonDeserializableInterface
     /* @var string $ApplicationId */
     public $ApplicationId;
 
+    /* @var string $Identifier */
+    public $Identifier;
+
     /**
      * gets the json properties needed to deserialize
      *
@@ -45,6 +48,7 @@ class BaseRequest implements JsonDeserializableInterface
         $arr['DeviceId'] = new TextProperty('DeviceId');
         $arr['AuthorizationCode'] = new TextProperty('AuthorizationCode');
         $arr['ApplicationId'] = new TextProperty('ApplicationId');
+        $arr['Identifier'] = new TextProperty('Identifier');
         return $arr;
     }
 }

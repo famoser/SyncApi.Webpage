@@ -30,7 +30,7 @@ class CollectionControllerTest extends ApiTestController
     public function testCreateSync()
     {
         //test create
-        $syncRequest = new CollectionEntityRequest();
+        $syncRequest = SampleGenerator::createCollectionEntityRequest();
         $this->testHelper->authorizeRequest($syncRequest);
 
         $syncRequest->UserId = $this->testHelper->getUserId();
@@ -55,7 +55,7 @@ class CollectionControllerTest extends ApiTestController
     public function testExplicitReadSync()
     {
         //test create
-        $syncRequest = new CollectionEntityRequest();
+        $syncRequest = SampleGenerator::createCollectionEntityRequest();
         $this->testHelper->authorizeRequest($syncRequest);
 
         $syncRequest->UserId = $this->testHelper->getUserId();
@@ -74,7 +74,7 @@ class CollectionControllerTest extends ApiTestController
         AssertHelper::checkForSavedCollection($this, $collEntity, $this->testHelper->getTestApp());
 
         //test read
-        $syncRequest2 = new CollectionEntityRequest();
+        $syncRequest2 = SampleGenerator::createCollectionEntityRequest();
         $this->testHelper->authorizeRequest($syncRequest2);
 
         $syncRequest2->UserId = $syncRequest->UserId;
@@ -114,7 +114,7 @@ class CollectionControllerTest extends ApiTestController
     public function testImplicitReadSync()
     {
         //test create
-        $syncRequest = new CollectionEntityRequest();
+        $syncRequest = SampleGenerator::createCollectionEntityRequest();
         $this->testHelper->authorizeRequest($syncRequest);
 
         $syncRequest->UserId = $this->testHelper->getUserId();
@@ -133,7 +133,7 @@ class CollectionControllerTest extends ApiTestController
         AssertHelper::checkForSavedCollection($this, $collEntity, $this->testHelper->getTestApp());
 
         //test read
-        $syncRequest2 = new CollectionEntityRequest();
+        $syncRequest2 = SampleGenerator::createCollectionEntityRequest();
         $this->testHelper->authorizeRequest($syncRequest2);
 
         $syncRequest2->UserId = $syncRequest->UserId;
@@ -159,7 +159,7 @@ class CollectionControllerTest extends ApiTestController
     public function testUpdateSync()
     {
         //test create
-        $syncRequest = new CollectionEntityRequest();
+        $syncRequest = SampleGenerator::createCollectionEntityRequest();
         $this->testHelper->authorizeRequest($syncRequest);
 
         $syncRequest->UserId = $this->testHelper->getUserId();
@@ -178,7 +178,7 @@ class CollectionControllerTest extends ApiTestController
         AssertHelper::checkForSavedCollection($this, $collEntity, $this->testHelper->getTestApp());
 
         //test update
-        $syncRequest2 = new CollectionEntityRequest();
+        $syncRequest2 = SampleGenerator::createCollectionEntityRequest();
         $this->testHelper->authorizeRequest($syncRequest2);
 
         $syncRequest2->UserId = $syncRequest->UserId;
@@ -202,7 +202,7 @@ class CollectionControllerTest extends ApiTestController
     public function testDeleteSync()
     {
         //test create
-        $syncRequest = new CollectionEntityRequest();
+        $syncRequest = SampleGenerator::createCollectionEntityRequest();
         $this->testHelper->authorizeRequest($syncRequest);
 
         $syncRequest->UserId = $this->testHelper->getUserId();
@@ -221,7 +221,7 @@ class CollectionControllerTest extends ApiTestController
         AssertHelper::checkForSavedCollection($this, $collEntity, $this->testHelper->getTestApp());
 
         //test delete
-        $syncRequest2 = new CollectionEntityRequest();
+        $syncRequest2 = SampleGenerator::createCollectionEntityRequest();
         $this->testHelper->authorizeRequest($syncRequest2);
 
         $syncRequest2->UserId = $syncRequest->UserId;
@@ -245,7 +245,7 @@ class CollectionControllerTest extends ApiTestController
     public function testConfirmVersionSync()
     {
         //test create
-        $syncRequest = new CollectionEntityRequest();
+        $syncRequest = SampleGenerator::createCollectionEntityRequest();
         $this->testHelper->authorizeRequest($syncRequest);
 
         $syncRequest->UserId = $this->testHelper->getUserId();
@@ -264,7 +264,7 @@ class CollectionControllerTest extends ApiTestController
         AssertHelper::checkForSavedCollection($this, $collEntity, $this->testHelper->getTestApp());
 
         //test confirm version (no response)
-        $syncRequest2 = new CollectionEntityRequest();
+        $syncRequest2 = SampleGenerator::createCollectionEntityRequest();
         $this->testHelper->authorizeRequest($syncRequest2);
 
         $syncRequest2->UserId = $syncRequest->UserId;
@@ -283,7 +283,7 @@ class CollectionControllerTest extends ApiTestController
         AssertHelper::checkForSavedCollection($this, $collEntity, $this->testHelper->getTestApp());
 
         //test confirm version (active version response)
-        $syncRequest2 = new CollectionEntityRequest();
+        $syncRequest2 = SampleGenerator::createCollectionEntityRequest();
         $this->testHelper->authorizeRequest($syncRequest2);
 
         $syncRequest2->UserId = $syncRequest->UserId;
@@ -316,7 +316,7 @@ class CollectionControllerTest extends ApiTestController
     public function testConfirmAccessSync()
     {
         //test create
-        $syncRequest = new CollectionEntityRequest();
+        $syncRequest = SampleGenerator::createCollectionEntityRequest();
         $this->testHelper->authorizeRequest($syncRequest);
 
         $syncRequest->UserId = $this->testHelper->getUserId();
@@ -335,7 +335,7 @@ class CollectionControllerTest extends ApiTestController
         AssertHelper::checkForSavedCollection($this, $collEntity, $this->testHelper->getTestApp());
 
         //test confirm access (granted)
-        $syncRequest1 = new CollectionEntityRequest();
+        $syncRequest1 = SampleGenerator::createCollectionEntityRequest();
         $this->testHelper->authorizeRequest($syncRequest1);
 
         $syncRequest1->UserId = $syncRequest->UserId;
@@ -358,7 +358,7 @@ class CollectionControllerTest extends ApiTestController
         static::assertEquals(OnlineAction::ACCESS_GRANTED, $responseObj->CollectionEntities[0]->OnlineAction);
 
         //test confirm access (denied)
-        $syncRequest2 = new CollectionEntityRequest();
+        $syncRequest2 = SampleGenerator::createCollectionEntityRequest();
         $this->testHelper->authorizeRequest($syncRequest2);
 
         $syncRequest2->UserId = $syncRequest->UserId;
@@ -388,7 +388,7 @@ class CollectionControllerTest extends ApiTestController
     public function testMultipleActionSync()
     {
         //test create
-        $syncRequest = new CollectionEntityRequest();
+        $syncRequest = SampleGenerator::createCollectionEntityRequest();
         $this->testHelper->authorizeRequest($syncRequest);
 
         $syncRequest->UserId = $this->testHelper->getUserId();

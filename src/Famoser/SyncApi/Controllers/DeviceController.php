@@ -16,6 +16,7 @@ use Famoser\SyncApi\Models\Communication\Entities\Base\BaseCommunicationEntity;
 use Famoser\SyncApi\Models\Communication\Request\Base\BaseRequest;
 use Famoser\SyncApi\Models\Communication\Response\AuthorizationResponse;
 use Famoser\SyncApi\Models\Communication\Response\CollectionEntityResponse;
+use Famoser\SyncApi\Models\Communication\Response\DeviceEntityResponse;
 use Famoser\SyncApi\Models\Entities\Base\BaseSyncEntity;
 use Famoser\SyncApi\Models\Entities\Device;
 use Famoser\SyncApi\Types\ApiError;
@@ -42,14 +43,14 @@ class DeviceController extends AbstractApiSyncController
      */
     public function get(Request $request, Response $response, $args)
     {
-        $req = $this->getRequestService()->parseCollectionEntityRequest($request);
+        $req = $this->getRequestService()->parseDeviceEntityRequest($request);
         $this->authorizeRequest($req);
         $this->authenticateRequest($req);
 
-        $resp = new CollectionEntityResponse();
-        $resp->CollectionEntities = $this->syncInternal(
+        $resp = new DeviceEntityResponse();
+        $resp->DeviceEntities = $this->syncInternal(
             $req,
-            $req->CollectionEntities,
+            $req->DeviceEntities,
             ContentType::DEVICE,
             [OnlineAction::READ, OnlineAction::CONFIRM_VERSION]
         );
@@ -134,8 +135,8 @@ class DeviceController extends AbstractApiSyncController
 
         return $this->getDatabaseService()->getFromDatabase(
             new Device(),
-            'user_guid = :user_guid',
-            ['user_guid' => $this->getUser($req)->guid]
+            'user_guid = :user_guid AND identifier = :identifier',
+            ['user_guid' => $this->getUser($req)->guid, 'identifier' => $req->Identifier]
         );
     }
 

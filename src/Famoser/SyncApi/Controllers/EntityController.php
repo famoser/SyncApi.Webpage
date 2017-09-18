@@ -82,9 +82,10 @@ class EntityController extends AbstractApiSyncController
         $arr = $this->convertToStringArrayKeys($collectionIds);
         $inner = implode(',:', array_keys($arr));
         $arr['guid'] = $req->Id;
+        $arr['identifier'] = $req->Identifier;
         $entity = $this->getDatabaseService()->getSingleFromDatabase(
             new Entity(),
-            'guid = :guid AND collection_guid IN (:' . $inner . ')',
+            'guid = :guid AND collection_guid IN (:' . $inner . ') AND identifier = :identifier',
             $arr
         );
 
@@ -164,10 +165,11 @@ class EntityController extends AbstractApiSyncController
             return [];
         }
 
+        $collectionIds['identifier'] = $req->Identifier;
         //get all collections
         return $this->getDatabaseService()->getFromDatabase(
             new Entity(),
-            'collection_guid IN (:' . implode(',:', array_keys($collectionIds)) . ')',
+            'collection_guid IN (:' . implode(',:', array_keys($collectionIds)) . ') AND identifier = :identifier',
             $collectionIds);
     }
 
@@ -195,6 +197,7 @@ class EntityController extends AbstractApiSyncController
         $entity->collection_guid = $commEntity->CollectionId;
         $entity->device_guid = $this->getDevice($req)->guid;
         $entity->user_guid = $this->getUser($req)->guid;
+        $entity->identifier = $req->Identifier;
         return $entity;
     }
 }

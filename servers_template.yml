@@ -24,3 +24,21 @@ dev:
   branch: develop
   stage: dev
   deploy_path: ~/www/deploy/syncapi.myserver.ch/dev
+
+lecture-sync:
+  host: ftp.myserver.ch
+  port: 22
+  user: myuser
+  password: mypass
+  branch: lecture-sync
+  stage: lecture-sync
+  deploy_path: ~/www/deploy/syncapi.myserver.ch/lecture-sync
+
+bookmarked:
+  host: ftp.myserver.ch
+  port: 22
+  user: myuser
+  password: mypass
+  branch: lecture-sync
+  stage: lecture-sync
+  deploy_path: ~/www/deploy/syncapi.myserver.ch/lecture-sync

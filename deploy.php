@@ -15,6 +15,11 @@ set(
     '{{composer_action}} --verbose --prefer-dist --no-progress --no-interaction --no-dev --optimize-autoloader --ignore-platform-reqs'
 );
 
+task('deploy:prod', function () {
+    run('cd {{release_path}} && cd src/public && echo NUL > .prod');
+});
+
+
 // import servers
 serverList('servers.yml');
 
@@ -27,6 +32,7 @@ task('deploy', [
     'deploy:shared',
     'deploy:writable',
     'deploy:vendors',
+    'deploy:prod',
     'deploy:clear_paths',
     'deploy:symlink',
     'deploy:unlock',

@@ -176,6 +176,7 @@ class ApplicationController extends FrontendController
             return $appStats;
         }
 
+        /* @var UserCollection[] $userCollections */
         $userCollections = $this->getDatabaseService()->getFromDatabase(
             new UserCollection(),
             'user_guid IN (:' . implode(',:', array_keys($userGuids)) . ')',

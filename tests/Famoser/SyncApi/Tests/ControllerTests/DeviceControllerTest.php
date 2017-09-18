@@ -11,10 +11,11 @@ namespace Famoser\SyncApi\Tests\ControllerTests;
 
 use Famoser\SyncApi\Models\Communication\Entities\DeviceCommunicationEntity;
 use Famoser\SyncApi\Models\Communication\Request\AuthorizationRequest;
-use Famoser\SyncApi\Models\Communication\Request\CollectionEntityRequest;
-use Famoser\SyncApi\Models\Communication\Response\CollectionEntityResponse;
+use Famoser\SyncApi\Models\Communication\Request\DeviceEntityRequest;
+use Famoser\SyncApi\Models\Communication\Response\DeviceEntityResponse;
 use Famoser\SyncApi\Tests\ControllerTests\Base\ApiSyncTestController;
 use Famoser\SyncApi\Tests\TestHelpers\AssertHelper;
+use Famoser\SyncApi\Tests\TestHelpers\SampleGenerator;
 
 /**
  * tests the methods from the device controller
@@ -29,7 +30,7 @@ class DeviceControllerTest extends ApiSyncTestController
     public function testGetAllDevices()
     {
         //add unauthorized device
-        $syncRequest = new CollectionEntityRequest();
+        $syncRequest = SampleGenerator::createDeviceEntityRequest();
         $this->testHelper->authorizeRequest($syncRequest);
 
         $syncRequest->UserId = $this->testHelper->getUserId();
@@ -43,9 +44,9 @@ class DeviceControllerTest extends ApiSyncTestController
 
         $responseString = AssertHelper::checkForSuccessfulApiResponse($this, $response);
 
-        /* @var CollectionEntityResponse $responseObj */
+        /* @var DeviceEntityResponse $responseObj */
         $responseObj = json_decode($responseString);
-        static::assertTrue(count($responseObj->CollectionEntities) == 3);
+        static::assertTrue(count($responseObj->DeviceEntities) == 3);
     }
 
     /**
@@ -55,7 +56,7 @@ class DeviceControllerTest extends ApiSyncTestController
     public function testAuthenticateDevices()
     {
         //add unauthorized device
-        $syncRequest = new CollectionEntityRequest();
+        $syncRequest = SampleGenerator::createDeviceEntityRequest();
         $this->testHelper->authorizeRequest($syncRequest);
 
         $syncRequest->UserId = $this->testHelper->getUserId();
@@ -81,20 +82,20 @@ class DeviceControllerTest extends ApiSyncTestController
 
         $responseString = AssertHelper::checkForSuccessfulApiResponse($this, $response);
 
-        /* @var CollectionEntityResponse $responseObj */
+        /* @var DeviceEntityResponse $responseObj */
         $responseObj = json_decode($responseString);
-        static::assertTrue(count($responseObj->CollectionEntities) == 3);
-        foreach ($responseObj->CollectionEntities as $collectionEntity) {
-            /* @var DeviceCommunicationEntity $collectionEntity */
-            switch ($collectionEntity->Id) {
+        static::assertTrue(count($responseObj->DeviceEntities) == 3);
+        foreach ($responseObj->DeviceEntities as $deviceEntity) {
+            /* @var DeviceCommunicationEntity $deviceEntity */
+            switch ($deviceEntity->Id) {
                 case $deviceId1:
-                    static::assertTrue($collectionEntity->IsAuthenticated);
+                    static::assertTrue($deviceEntity->IsAuthenticated);
                     break;
                 case $deviceId2:
-                    static::assertTrue($collectionEntity->IsAuthenticated);
+                    static::assertTrue($deviceEntity->IsAuthenticated);
                     break;
                 case $deviceId3:
-                    static::assertFalse($collectionEntity->IsAuthenticated);
+                    static::assertFalse($deviceEntity->IsAuthenticated);
                     break;
                 default:
                     static::fail("unknown device id");
@@ -109,7 +110,7 @@ class DeviceControllerTest extends ApiSyncTestController
     public function testUnAuthenticateDevices()
     {
         //add unauthorized device
-        $syncRequest = new CollectionEntityRequest();
+        $syncRequest = SampleGenerator::createDeviceEntityRequest();
         $this->testHelper->authorizeRequest($syncRequest);
 
         $syncRequest->UserId = $this->testHelper->getUserId();
@@ -135,20 +136,20 @@ class DeviceControllerTest extends ApiSyncTestController
 
         $responseString = AssertHelper::checkForSuccessfulApiResponse($this, $response);
 
-        /* @var CollectionEntityResponse $responseObj */
+        /* @var DeviceEntityResponse $responseObj */
         $responseObj = json_decode($responseString);
-        static::assertTrue(count($responseObj->CollectionEntities) == 3);
-        foreach ($responseObj->CollectionEntities as $collectionEntity) {
-            /* @var DeviceCommunicationEntity $collectionEntity */
-            switch ($collectionEntity->Id) {
+        static::assertTrue(count($responseObj->DeviceEntities) == 3);
+        foreach ($responseObj->DeviceEntities as $deviceEntity) {
+            /* @var DeviceCommunicationEntity $deviceEntity */
+            switch ($deviceEntity->Id) {
                 case $deviceId1:
-                    static::assertTrue($collectionEntity->IsAuthenticated);
+                    static::assertTrue($deviceEntity->IsAuthenticated);
                     break;
                 case $deviceId2:
-                    static::assertFalse($collectionEntity->IsAuthenticated);
+                    static::assertFalse($deviceEntity->IsAuthenticated);
                     break;
                 case $deviceId3:
-                    static::assertFalse($collectionEntity->IsAuthenticated);
+                    static::assertFalse($deviceEntity->IsAuthenticated);
                     break;
                 default:
                     static::fail("unknown device id");

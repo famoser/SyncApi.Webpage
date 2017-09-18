@@ -47,7 +47,7 @@ class EntityControllerHistorySyncTest extends ApiTestController
             $action = OnlineAction::CREATE;
         }
         //test create
-        $syncRequest = new SyncEntityRequest();
+        $syncRequest = SampleGenerator::createSyncEntityRequest();
         $this->testHelper->authorizeRequest($syncRequest);
 
         $syncRequest->UserId = $this->cache["UserId"];
@@ -81,7 +81,7 @@ class EntityControllerHistorySyncTest extends ApiTestController
     {
         $this->addEntityVersion(2);
 
-        $request = new HistoryEntityRequest();
+        $request = SampleGenerator::createHistoryEntityRequest();
         $this->testHelper->authorizeRequest($request);
         $request->UserId = $this->cache["UserId"];
         $request->DeviceId = $this->cache["DeviceId"];
@@ -103,7 +103,7 @@ class EntityControllerHistorySyncTest extends ApiTestController
     {
         $this->addEntityVersion(3);
 
-        $request = new HistoryEntityRequest();
+        $request = SampleGenerator::createHistoryEntityRequest();
         $this->testHelper->authorizeRequest($request);
         $request->UserId = $this->cache["UserId"];
         $request->DeviceId = $this->cache["DeviceId"];
