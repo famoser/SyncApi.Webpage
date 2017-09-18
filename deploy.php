@@ -20,6 +20,13 @@ task('deploy:prod', function () {
 });
 
 
+// kill php processes to ensure symlinks are refreshed
+task('deploy:refresh_symlink', function () {
+    run("killall -9 php-cgi"); //kill all php processes so symlink is refreshed
+})->desc('Refreshing symlink');
+
+
+
 // import servers
 serverList('servers.yml');
 
@@ -44,3 +51,5 @@ task('deploy', [
 set('default_stage', 'dev');
 
 after('deploy', 'success');
+
+after('deploy:symlink', 'deploy:refresh_symlink');
