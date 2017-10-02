@@ -15,6 +15,18 @@ set(
     '{{composer_action}} --verbose --prefer-dist --no-progress --no-interaction --no-dev --optimize-autoloader --ignore-platform-reqs'
 );
 
+task('deploy:prod', function () {
+    run('cd {{release_path}} && cd src/public && echo NUL > .prod');
+});
+
+
+// kill php processes to ensure symlinks are refreshed
+task('deploy:refresh_symlink', function () {
+    run("killall -9 php-cgi"); //kill all php processes so symlink is refreshed
+})->desc('Refreshing symlink');
+
+
+
 // import servers
 serverList('servers.yml');
 
@@ -27,6 +39,7 @@ task('deploy', [
     'deploy:shared',
     'deploy:writable',
     'deploy:vendors',
+    'deploy:prod',
     'deploy:clear_paths',
     'deploy:symlink',
     'deploy:unlock',
@@ -38,3 +51,5 @@ task('deploy', [
 set('default_stage', 'dev');
 
 after('deploy', 'success');
+
+after('deploy:symlink', 'deploy:refresh_symlink');

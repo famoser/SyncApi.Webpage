@@ -1,3 +1,4 @@
+
 # SyncApi
 This is the Webpage version for the http://github.com/famoser/SyncApi
 
@@ -6,6 +7,7 @@ This is the Webpage version for the http://github.com/famoser/SyncApi
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/0049282fe1b3437ba8321ec244a3ea93)](https://www.codacy.com/app/famoser/SyncApi-Webpage?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=famoser/SyncApi.Webpage&amp;utm_campaign=Badge_Grade)
 [![Scrutinizer](https://scrutinizer-ci.com/g/famoser/SyncApi.Webpage/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/famoser/SyncApi.Webpage)
 [![Test Coverage](https://codeclimate.com/github/famoser/SyncApi.Webpage/badges/coverage.svg)](https://codeclimate.com/github/famoser/SyncApi.Webpage/coverage)
+[![CircleCI](https://circleci.com/gh/famoser/SyncApi.Webpage.svg?style=svg)](https://circleci.com/gh/famoser/SyncApi.Webpage)
 
 a nuget portable library to sync entities in a very convenient way.
 
